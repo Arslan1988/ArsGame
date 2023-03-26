@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Лишний класс, Контрол лучше весить на объект, которым управляет игрок
+//Так тебе придется на каждое колесо весить этот скрипт
 public class ControlWheels : MonoBehaviour
 {
     private float wheelsSpeed =10f;

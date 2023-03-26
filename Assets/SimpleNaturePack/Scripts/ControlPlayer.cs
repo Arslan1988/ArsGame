@@ -2,8 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ControlPlayer : MonoBehaviour
 {
+	/*Желательно делать контроллеры такими, чтобы они не знали ничего
+	об объекте, которым управляют.
+	Например дистанционка имеет только кнопки - отталкивайся от этого.
+	*/
     private Rigidbody _rb;
     public float jump=10f, speed =1f;
 

@@ -10,14 +10,20 @@ public class VehicleController : MonoBehaviour
     [Header("Vehicle Steeings")]
     public float enginePower=250f, brakeForse=30000f,steerAngles =35f;
 
-    [Header("Wheels")]
+	//Можно объединить в один массив, но лучше использовать List<WheelCollider>
+	//Но если есть смысл в разделении, то можно и разделить
+	//Если ты делишь машину на передний привод и т д
+    [Header("Wheels")] 
     public WheelCollider[] frontWheels;
     public WheelCollider[] rearWheels;
+	
     public Vector3 centerMass;
 
     void Start()
     {
         _rigidbody.GetComponent<Rigidbody>();
+
+		//зачем это?
         _rigidbody.centerOfMass = centerMass;
     }
 
@@ -27,6 +33,7 @@ public class VehicleController : MonoBehaviour
         brake = Input.GetAxis("Brake");
         backDraft = Input.GetAxis("Back Draft")*-enginePower;
         steering = Input.GetAxis("Horizontal");
+
         foreach(WheelCollider wheel in frontWheels)
         wheel.motorTorque= accel;
         foreach (WheelCollider wheel in rearWheels)
@@ -44,5 +51,18 @@ public class VehicleController : MonoBehaviour
 
         foreach (WheelCollider wheel in frontWheels)
         wheel.steerAngle = steerAngles * steering;
+
+		/* Лучше написать так:
+		foreach(WheelCollider wheel in frontWheels) {
+			wheel.motorTorque= accel;
+			wheel.brakeTorque = brakeForse * brake;
+			wheel.motorTorque = backDraft;
+			wheel.steerAngle = steerAngles * steering;
+		}
+		foreach(WheelCollider wheel in rearWheels) {
+			wheel.motorTorque = accel;
+			wheel.brakeTorque = brakeForse * brake;
+		}
+		*/
     }
 }
