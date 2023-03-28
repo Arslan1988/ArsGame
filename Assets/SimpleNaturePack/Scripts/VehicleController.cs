@@ -51,18 +51,7 @@ public class VehicleController : MonoBehaviour
 
         foreach (WheelCollider wheel in frontWheels)
         wheel.steerAngle = steerAngles * steering;
-
-		/* Лучше написать так:
-		foreach(WheelCollider wheel in frontWheels) {
-			wheel.motorTorque= accel;
-			wheel.brakeTorque = brakeForse * brake;
-			wheel.motorTorque = backDraft;
-			wheel.steerAngle = steerAngles * steering;
-		}
-		foreach(WheelCollider wheel in rearWheels) {
-			wheel.motorTorque = accel;
-			wheel.brakeTorque = brakeForse * brake;
-		}
-		*/
+      
+		
     }
 }
